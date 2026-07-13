@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arnav Mathur | Finance &amp; Technology Portfolio</title>
+<style>
+  :root {
+    --page: #0d0d0d;
+    --surface: #15181d;
+    --surface-2: #191c22;
+    --ink: #f2f1ec;
+    --ink-2: #c3c2b7;
+    --ink-muted: #82807a;
+    --border: rgba(255,255,255,0.09);
+    --border-strong: rgba(255,255,255,0.16);
+
+    --blue: #3987e5;
+    --aqua: #199e70;
+    --yellow: #c98500;
+    --violet: #9085e9;
+    --magenta: #d55181;
+    --orange: #d95926;
+
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", Times, serif;
+    --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Top nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--page);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .nav-name {
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    font-size: 12.5px;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+  }
+  .nav-links button {
+    background: none;
+    border: none;
+    color: var(--ink-muted);
+    font: inherit;
+    cursor: pointer;
+    padding: 4px 0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-links button:hover { color: var(--ink); border-bottom-color: var(--border-strong); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 88px 0 68px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 30px, rgba(255,255,255,0.028) 31px);
+  }
+
+  .mark {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 30px;
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mark span {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink-2);
+  }
+  /* To use your own photo: replace the .mark <span> in the HTML with
+     <img src="assets/your-photo.jpg" alt="Arnav Mathur"
+          style="width:100%;height:100%;object-fit:cover;"> */
+
+  .eyebrow {
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    margin: 0 0 18px;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5.5vw, 54px);
+    font-weight: 600;
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+  }
+
+  .bio-line {
+    font-size: 14.5px;
+    color: var(--ink-2);
+    margin: 0 0 44px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat {
+    padding: 0 30px;
+    border-left: 1px solid var(--border);
+  }
+  .stat:first-child { border-left: none; }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    margin-top: 5px;
+  }
+
+  /* ---------- Sections / Accordion ---------- */
+  main { padding: 60px 0 100px; }
+
+  .section-block { margin-bottom: 14px; }
+
+  .accordion {
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 26px 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+  }
+  .accordion-header:hover { background: rgba(255,255,255,0.015); }
+
+  .sec-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink-muted);
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .accordion-titles { flex: 1; min-width: 0; }
+  .accordion-titles h2 {
+    font-family: var(--serif);
+    font-size: 20px;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .accordion-titles p {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .accordion-titles .count { color: var(--ink-2); }
+
+  .toggle-mark {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 6px;
+    color: var(--ink-muted);
+    transition: transform 0.3s ease;
+  }
+  .accordion.open .toggle-mark { transform: rotate(45deg); }
+
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .accordion.open .accordion-body { grid-template-rows: 1fr; }
+  .accordion-body-inner { overflow: hidden; }
+  .accordion-content {
+    padding: 6px 28px 34px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* subgroup */
+  .subgroup { margin-top: 30px; }
+  .subgroup:first-child { margin-top: 26px; }
+  .subgroup-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 15px;
+  }
+  .subgroup-dot {
+    width: 7px; height: 7px;
+    flex-shrink: 0;
+  }
+  .subgroup-head h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-left: 2px solid transparent;
+    padding: 20px 20px 18px;
+  }
+  .card h4 {
+    font-family: var(--serif);
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .card p {
+    font-size: 12.8px;
+    color: var(--ink-2);
+    margin: 0 0 12px;
+    line-height: 1.6;
+  }
+  .card-eyebrow {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+  }
+  .meta-line {
+    font-size: 11.5px;
+    color: var(--ink-muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .meta-line b { color: var(--ink-2); font-weight: 600; }
+
+  .file-links {
+    margin-top: 13px;
+    padding-top: 11px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .file-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    width: fit-content;
+  }
+  .file-link .ext {
+    color: var(--ink-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    margin-left: 3px;
+  }
+  .file-link:hover { color: var(--ink); border-bottom-color: var(--ink-muted); }
+
+  .report-card p { font-size: 13px; }
+
+  /* Coming soon (programming section) */
+  .soon-note {
+    font-size: 13.5px;
+    color: var(--ink-2);
+    margin: 0 0 22px;
+    padding: 15px 18px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.015);
+  }
+  .skeleton-card {
+    border: 1px dashed var(--border-strong);
+    padding: 20px 18px;
+    background: var(--surface-2);
+  }
+  .skeleton-line {
+    height: 8px;
+    background: rgba(255,255,255,0.07);
+    margin-bottom: 9px;
+  }
+  .skeleton-line.w60 { width: 60%; }
+  .skeleton-line.w90 { width: 90%; }
+  .skeleton-line.w40 { width: 40%; }
+  .skeleton-eyebrow {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 13px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 34px 0 50px;
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 12.5px;
+  }
+  footer p { margin: 0 0 8px; }
+  footer a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero { padding: 64px 0 48px; }
+    .stat { padding: 0 16px; }
+    .accordion-header { padding: 20px 18px; gap: 14px; }
+    .accordion-content { padding: 6px 18px 26px; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-name">Arnav Mathur</div>
+    <div class="nav-links">
+      <button onclick="jumpTo('sec-financial')">Financial Projects</button>
+      <button onclick="jumpTo('sec-programming')">Programming</button>
+      <button onclick="jumpTo('sec-reports')">Analyst Reports</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mark"><span>AM</span></div>
+
+    <p class="eyebrow">Finance &amp; Technology &nbsp;|&nbsp; Professional Portfolio</p>
+    <h1>Arnav Mathur</h1>
+    <p class="bio-line">Finance and technical programming &middot; Chapman University, Finance &amp; Analytics (Minor) &middot; Class of 2026</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="num">18</div><div class="label">Financial Models</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Analyst Reports</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Model Categories</div></div>
+      <div class="stat"><div class="num">2026</div><div class="label">Grad Year</div></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= FINANCIAL PROJECTS ================= -->
+  <div class="section-block" id="sec-financial">
+    <div class="accordion open" data-accordion>
+      <button class="accordion-header" data-toggle>
+        <span class="sec-num">01</span>
+        <div class="accordion-titles">
+          <h2>Financial Projects &amp; Models</h2>
+          <p>Portfolio theory, derivatives pricing, valuation, fixed income, real estate and sector data, built independently in Excel and VBA. <span class="count">18 models across 6 categories.</span></p>
+        </div>
+        <svg class="toggle-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg>
+      </button>
+
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <div class="accordion-content">
+
+            <!-- Portfolio Theory -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--blue);"></span><h3>Portfolio Theory &amp; Asset Allocation</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--blue);">
+                  <span class="card-eyebrow" style="color:var(--blue);">Portfolio Theory</span>
+                  <h4>3-Security Efficient Frontier</h4>
+                  <p>Mean-variance optimization across a defense-sector universe: Northrop Grumman, Lockheed Martin, and RTX. Solves for the tangency portfolio and maps the risk/return tradeoff along the efficient frontier using daily price history.</p>
+                  <div class="meta-line">Universe: <b>NOC · LMT · RTX</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/3-Security-Efficient-Frontier.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--blue);">
+                  <span class="card-eyebrow" style="color:var(--blue);">Portfolio Theory</span>
+                  <h4>4-Asset Mean-Variance Optimizer</h4>
+                  <p>A monthly-return covariance model computing expected return, standard deviation, and variance for four high-growth tech names. Refined across several iterations to derive optimal portfolio weights from 10 years of price history.</p>
+                  <div class="meta-line">Universe: <b>AAPL · NVDA · META · SMCI</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/4-Asset-Mean-Variance-Optimizer.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--blue);">
+                  <span class="card-eyebrow" style="color:var(--blue);">Portfolio Theory</span>
+                  <h4>7-Asset Markowitz Optimizer</h4>
+                  <p>A full expected-return, variance, and covariance matrix across seven securities to identify the optimal risk-adjusted allocation over a rolling three-month daily window.</p>
+                  <div class="meta-line">Universe: <b>NVDA · SOFI · GME · GOOGL · MSFT · AMZN · AAPL</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/7-Asset-Markowitz-Optimizer.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--blue);">
+                  <span class="card-eyebrow" style="color:var(--blue);">Portfolio Theory</span>
+                  <h4>Black-Litterman Portfolio Optimization</h4>
+                  <p>Combines market-cap-weighted equilibrium returns with subjective investor "views" on Oracle and BlackRock to produce posterior expected returns, comparing optimal weights with and without the view overlay.</p>
+                  <div class="meta-line">Base: <b>SPY · IWM · TLT · GLD · VNQ</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Black-Litterman-Portfolio-Optimization.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--blue);">
+                  <span class="card-eyebrow" style="color:var(--blue);">Simulation</span>
+                  <h4>Retirement Portfolio Monte Carlo</h4>
+                  <p>Simulated a $1,000,000 retirement portfolio under stochastic annual returns (9% expected, 20% volatility) against a 4% risk-free rate to estimate the distribution of terminal wealth.</p>
+                  <div class="meta-line"><b>74.4%</b> odds of a positive bequest</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Retirement-Portfolio-Monte-Carlo.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Derivatives -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--violet);"></span><h3>Derivatives &amp; Quantitative Pricing</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--violet);">
+                  <span class="card-eyebrow" style="color:var(--violet);">Derivatives</span>
+                  <h4>Black-Scholes Option Pricing Engine</h4>
+                  <p>A live Black-Scholes pricing model (an Excel workbook with VBA enabled) that pulls historical price data to estimate volatility and expected return, then prices theoretical call and put values.</p>
+                  <div class="meta-line">Applied to <b>TSLA</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Black-Scholes-Option-Pricing.xlsm" target="_blank" rel="noopener">View model<span class="ext">.xlsm</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--violet);">
+                  <span class="card-eyebrow" style="color:var(--violet);">Derivatives</span>
+                  <h4>Binomial Option Pricing Suite</h4>
+                  <p>Single-step, two-step, and N-step binomial tree models to value American calls and puts, with volatility and expected return derived directly from realized price data.</p>
+                  <div class="meta-line">Applied to <b>SMCI</b> and <b>TSLA</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Binomial-Option-Pricing-SMCI.xlsx" target="_blank" rel="noopener">View SMCI model<span class="ext">.xlsx</span></a>
+                    <a class="file-link" href="files/Binomial-Option-Pricing-TSLA.xlsx" target="_blank" rel="noopener">View TSLA model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--violet);">
+                  <span class="card-eyebrow" style="color:var(--violet);">Simulation</span>
+                  <h4>Option Pricing via Monte Carlo Simulation</h4>
+                  <p>Simulates thousands of terminal price paths to price a European option against a defined strike, using annualized volatility and return estimated from trailing daily data.</p>
+                  <div class="meta-line">Applied to <b>SPY</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Option-Pricing-Monte-Carlo-SPY.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Valuation -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--aqua);"></span><h3>Valuation &amp; Equity Research Models</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--aqua);">
+                  <span class="card-eyebrow" style="color:var(--aqua);">Valuation</span>
+                  <h4>Full Valuation Model Suite</h4>
+                  <p>An end-to-end valuation template built from scratch: three-statement historicals, a revenue build, a Financial Statement Model, Free Cash Flow Model, Residual Income Model, Market Value Added Model, Dividend Discount Model, WACC build, relative comps, and a blended valuation output.</p>
+                  <div class="meta-line">10 linked model tabs</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Valuation-Model-Suite-V1.xlsx" target="_blank" rel="noopener">View V1<span class="ext">.xlsx</span></a>
+                    <a class="file-link" href="files/Valuation-Model-Suite-V2.xlsx" target="_blank" rel="noopener">View V2<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--aqua);">
+                  <span class="card-eyebrow" style="color:var(--aqua);">Valuation</span>
+                  <h4>Five9 (FIVN) DCF &amp; Valuation Model</h4>
+                  <p>Applied the full statement-model framework to Five9, building out the Financial Statement Model, DCF, and Market Value Added tabs to derive an intrinsic valuation.</p>
+                  <div class="meta-line">Ticker <b>FIVN</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Five9-FIVN-DCF-Valuation.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--aqua);">
+                  <span class="card-eyebrow" style="color:var(--aqua);">DCF</span>
+                  <h4>VISA DCF (FCFF)</h4>
+                  <p>A full unlevered free-cash-flow-to-firm build for Visa, including a revenue and COGS build, a fixed asset and D&amp;A/CapEx schedule, a net working capital schedule, WACC, and three-statement projections through 2028E.</p>
+                  <div class="meta-line">Revenue <b>$32.7B &rarr; $51.8B</b> (2023A&ndash;28E)</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/VISA-DCF-FCFF.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--aqua);">
+                  <span class="card-eyebrow" style="color:var(--aqua);">Valuation</span>
+                  <h4>Gordon Growth (Dividend Discount) Model</h4>
+                  <p>A multi-currency dividend discount model (USD, EUR, GBP) applied to dividend-paying names, solving for implied fair value from current price and dividend inputs.</p>
+                  <div class="meta-line">Examples: <b>PEP · KO</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Gordon-Growth-Dividend-Discount-Model.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--aqua);">
+                  <span class="card-eyebrow" style="color:var(--aqua);">Comps</span>
+                  <h4>Trading Comparables Model</h4>
+                  <p>Benchmarked aerospace, defense, and industrial technology names on enterprise value, market capitalization, and share metrics to triangulate relative valuation.</p>
+                  <div class="meta-line">Comps: <b>BA · AXON · NOC</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Trading-Comparables-Model.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Fixed Income -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--yellow);"></span><h3>Fixed Income</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--yellow);">
+                  <span class="card-eyebrow" style="color:var(--yellow);">Fixed Income</span>
+                  <h4>3-Bond Portfolio Optimization</h4>
+                  <p>A fixed-income allocation model spanning US Treasuries and corporate issuers, analyzing coupon rate, yield to maturity, market price, and face value to optimize portfolio weights.</p>
+                  <div class="meta-line">Includes a <b>US10Y Treasury</b></div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/3-Bond-Portfolio-Optimization.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--yellow);">
+                  <span class="card-eyebrow" style="color:var(--yellow);">Fixed Income</span>
+                  <h4>Bond Pricing Calculator</h4>
+                  <p>A standalone bond pricing tool computing present value from face value, coupon rate, payment frequency, and years to maturity.</p>
+                  <div class="meta-line">Reusable pricing utility</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Bond-Pricing-Calculator.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Real Estate / PE -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--orange);"></span><h3>Real Estate &amp; Private Equity</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--orange);">
+                  <span class="card-eyebrow" style="color:var(--orange);">LBO</span>
+                  <h4>Planet Fitness Leveraged Buyout</h4>
+                  <p>A private-equity-style LBO model for Planet Fitness, with entry assumptions, a financing and debt schedule, and a full returns analysis typical of a buyout underwrite.</p>
+                  <div class="meta-line">Entry, debt, and returns build</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Planet-Fitness-LBO.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+                <div class="card" style="border-left-color:var(--orange);">
+                  <span class="card-eyebrow" style="color:var(--orange);">Real Estate</span>
+                  <h4>Multifamily Real Estate Acquisition Model</h4>
+                  <p>Underwrote a 50-unit multifamily property ("Election Heights") at a 5.5% going-in cap rate, modeling debt service and levered returns against a $6.94M loan at 4% over a 30-year amortization.</p>
+                  <div class="meta-line">Purchase <b>$9.25M</b> · 50 units</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/Multifamily-Real-Estate-Acquisition-Model.xlsx" target="_blank" rel="noopener">View model<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Sector Data -->
+            <div class="subgroup">
+              <div class="subgroup-head"><span class="subgroup-dot" style="background:var(--magenta);"></span><h3>Sector &amp; Market Data</h3></div>
+              <div class="card-grid">
+
+                <div class="card" style="border-left-color:var(--magenta);">
+                  <span class="card-eyebrow" style="color:var(--magenta);">Sector Data</span>
+                  <h4>SOX vs. SPX Comparative Data Model</h4>
+                  <p>A comparative financial database benchmarking the PHLX Semiconductor Index against the S&amp;P 500 and the S&amp;P 500 IT sector across 1, 3, and 5-year returns, valuation, profitability, leverage and liquidity, and full statement detail from 2018 to 2025.</p>
+                  <div class="meta-line">Sector P/E <b>19x &rarr; 36x</b> (2018&ndash;23)</div>
+                  <div class="file-links">
+                    <a class="file-link" href="files/SOX-vs-SPX-Comparative-Data.xlsx" target="_blank" rel="noopener">View SOX vs SPX<span class="ext">.xlsx</span></a>
+                    <a class="file-link" href="files/Tech-Sector-Data-Breakdown.xlsx" target="_blank" rel="noopener">View Tech Sector Data<span class="ext">.xlsx</span></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROGRAMMING ================= -->
+  <div class="section-block" id="sec-programming">
+    <div class="accordion" data-accordion>
+      <button class="accordion-header" data-toggle>
+        <span class="sec-num">02</span>
+        <div class="accordion-titles">
+          <h2>Programming &amp; Full-Stack Projects</h2>
+          <p>Software projects currently live in private repositories. <span class="count">Publishing soon.</span></p>
+        </div>
+        <svg class="toggle-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg>
+      </button>
+
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <div class="accordion-content">
+            <div style="padding-top:18px;">
+              <p class="soon-note">This section is reserved for full-stack and software projects. The repositories are currently private and will be published shortly. Check back soon for write-ups, tech stacks, and links.</p>
+              <div class="card-grid">
+                <div class="skeleton-card">
+                  <span class="skeleton-eyebrow">Coming Soon</span>
+                  <div class="skeleton-line w60"></div>
+                  <div class="skeleton-line w90"></div>
+                  <div class="skeleton-line w40"></div>
+                </div>
+                <div class="skeleton-card">
+                  <span class="skeleton-eyebrow">Coming Soon</span>
+                  <div class="skeleton-line w60"></div>
+                  <div class="skeleton-line w90"></div>
+                  <div class="skeleton-line w40"></div>
+                </div>
+                <div class="skeleton-card">
+                  <span class="skeleton-eyebrow">Coming Soon</span>
+                  <div class="skeleton-line w60"></div>
+                  <div class="skeleton-line w90"></div>
+                  <div class="skeleton-line w40"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ANALYST REPORTS ================= -->
+  <div class="section-block" id="sec-reports">
+    <div class="accordion" data-accordion>
+      <button class="accordion-header" data-toggle>
+        <span class="sec-num">03</span>
+        <div class="accordion-titles">
+          <h2>Analyst Reports</h2>
+          <p>Macro research, sector analysis, and initiating-coverage equity research. <span class="count">5 reports.</span></p>
+        </div>
+        <svg class="toggle-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M4 12h16"/></svg>
+      </button>
+
+      <div class="accordion-body">
+        <div class="accordion-body-inner">
+          <div class="accordion-content" style="padding-top:26px;">
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+
+              <div class="card report-card" style="border-left-color:var(--blue);">
+                <span class="card-eyebrow" style="color:var(--blue);">Macro / Economics</span>
+                <h4>U.S. Trade Balance, Dollar Index &amp; Economic Outlook</h4>
+                <p>A 39-slide econometric research report analyzing the structural U.S. trade deficit ($70.3B, most recent release) and the DXY's valuation regime (the 97 to 98 band). Built three HAC-robust regression models covering export growth, the dollar index level, and import growth, finding a near unit-root process in DXY (lagged coefficient of 0.992) and a 0.744-point export acceleration per 1% rise in industrial production. Baseline 12-month forecast: a controlled dollar depreciation toward the 94.00 handle by Q2 2026.</p>
+                <div class="meta-line">Feb 2026 · 39 slides · 3 regression models</div>
+                <div class="file-links">
+                  <a class="file-link" href="files/Economics-Research-Report.pptx" target="_blank" rel="noopener">View report<span class="ext">.pptx</span></a>
+                </div>
+              </div>
+
+              <div class="card report-card" style="border-left-color:var(--aqua);">
+                <span class="card-eyebrow" style="color:var(--aqua);">Sector Analysis</span>
+                <h4>Technology Sector Industry Analysis</h4>
+                <p>A deep dive on the S&amp;P North American Technology Sector (SPGSTI), which posted a 706.33% ten-year return versus 249.89% for the S&amp;P 500. Covers demand drivers, sub-industry performance across semiconductors, software infrastructure, and consumer electronics, margin and valuation comparisons (P/E, EV/EBITDA, 2018 to 2025), a Porter's Five Forces breakdown, and current news and outlook, closing on an OVERWEIGHT sector call driven by the AI capex cycle.</p>
+                <div class="meta-line">May 2026 · Report + Presentation · 10yr return <b>706%</b></div>
+                <div class="file-links">
+                  <a class="file-link" href="files/Technology-Sector-Report.pptx" target="_blank" rel="noopener">View full report<span class="ext">.pptx</span></a>
+                  <a class="file-link" href="files/Technology-Sector-Presentation.pptx" target="_blank" rel="noopener">View presentation<span class="ext">.pptx</span></a>
+                </div>
+              </div>
+
+              <div class="card report-card" style="border-left-color:var(--magenta);">
+                <span class="card-eyebrow" style="color:var(--magenta);">Equity Research</span>
+                <h4>NVIDIA (NVDA): Initiating Coverage</h4>
+                <p>Initiated coverage with a BUY rating and a $220 twelve-month price target against $177.39 at initiation. Covers AI accelerator market positioning and the competitive landscape, a full financial summary projecting revenue growth from $60.9B (FY24) to $280.2B (FY27E), key investment risks, and comparable-company valuation multiples.</p>
+                <div class="meta-line">Rating <b>BUY</b> · PT <b>$220</b> · FIN 431, Apr 2026</div>
+                <div class="file-links">
+                  <a class="file-link" href="files/NVDA-Equity-Research.pptx" target="_blank" rel="noopener">View report<span class="ext">.pptx</span></a>
+                </div>
+              </div>
+
+              <div class="card report-card" style="border-left-color:var(--magenta);">
+                <span class="card-eyebrow" style="color:var(--magenta);">Equity Research</span>
+                <h4>Walmart (WMT): Initiating Coverage</h4>
+                <p>Initiated coverage with a $140 twelve-month price target against $127.50 at initiation (roughly $1.02T market cap). Analyzes the structural bifurcation in U.S. retail between value and premium positioning, projects revenue growth from $648.1B (FY24) to $748.8B (FY27E), and details investment risks and comparable-company multiples.</p>
+                <div class="meta-line">PT <b>$140</b> · Mkt cap <b>~$1.02T</b> · FIN 431, Apr 2026</div>
+                <div class="file-links">
+                  <a class="file-link" href="files/WMT-Equity-Research.pptx" target="_blank" rel="noopener">View report<span class="ext">.pptx</span></a>
+                </div>
+              </div>
+
+              <div class="card report-card" style="border-left-color:var(--yellow);">
+                <span class="card-eyebrow" style="color:var(--yellow);">Asset Class Report</span>
+                <h4>U.S. Investment-Grade Corporate Bonds</h4>
+                <p>Benchmarked against the Bloomberg U.S. Corporate Bond Index (using LQD as an accessible proxy), showing a 3.58% ten-year annualized return that outperforms both the Aggregate Bond Index (2.29%) and Treasuries (2.28%). Covers credit-spread and yield analysis and the AI-driven surge in hyperscaler debt issuance (BofA forecasts $175B in 2026 tech debt issuance), closing on a neutral-to-cautious recommendation favoring A-rated and above issuers and 2 to 5-year maturities.</p>
+                <div class="meta-line">10yr <b>3.58%</b> annualized · Mar 2026</div>
+                <div class="file-links">
+                  <a class="file-link" href="files/Investment-Grade-Corporate-Bonds-Report.docx" target="_blank" rel="noopener">View report<span class="ext">.docx</span></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Coursework and independent modeling work from Chapman University's Finance &amp; Analytics program. Last updated July 2026.</p>
+    <p><a href="mailto:arnavmathur816@gmail.com">arnavmathur816@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('[data-accordion]').classList.toggle('open');
+    });
+  });
+
+  function jumpTo(id) {
+    const section = document.getElementById(id);
+    const accordion = section.querySelector('[data-accordion]');
+    accordion.classList.add('open');
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+</body>
+</html>
