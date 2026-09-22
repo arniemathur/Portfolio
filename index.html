@@ -79,6 +79,13 @@
   }
   .stat .label { font-size: 12.5px; color: var(--ink-muted); }
 
+  code {
+    font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+    font-size: 0.92em;
+    background: var(--border);
+    padding: 1px 5px;
+  }
+
   /* main */
   main.wrap { padding: var(--s8) var(--s6) var(--s9); display: flex; flex-direction: column; gap: var(--s9); }
   section { display: flex; flex-direction: column; gap: var(--s7); }
@@ -338,9 +345,132 @@
   <section id="programming">
     <div class="section-head">
       <h2>Programming &amp; full-stack projects</h2>
-      <p>Software projects currently live in private repositories.</p>
+      <p>Independent full-stack builds, each written up as the problem it solves, what I built, and how I built it.</p>
     </div>
-    <div class="note">This section is reserved for full-stack and software projects. The repositories are private for now and will be published here shortly, with write-ups, tech stacks, and links.</div>
+
+    <div class="subgroup">
+      <div class="subgroup-head"><h3>Full-stack web apps</h3><p>Node and Express apps built end to end, from schema to UI.</p></div>
+      <div class="card-grid">
+
+        <div class="card">
+          <h4>City name guess</h4>
+          <p><b>Problem.</b> Wanted a Wordle-style daily puzzle built around visual recognition instead of vocabulary.</p>
+          <p><b>My solution.</b> A 6-guess, colored-tile city-name guesser revealed through a landmark photo &mdash; a daily mode with a shared city and locked-in stats, unlimited free play, colorblind-safe tiles, and a Wordle-style share card.</p>
+          <p><b>How I built it.</b> Node and Express on the built-in <code>node:sqlite</code> module, with guesses validated server-side so the answer can't be read from client code, and daily resets keyed to the player's local date rather than server time. Built with Claude Code, including a dedicated pass on mobile layout (keyboard overlap, image cropping, iOS long-press).</p>
+          <div class="meta">Node.js, Express, SQLite, vanilla JS</div>
+          <div class="links"><a href="https://github.com/arniemathur/city-name-guess-game" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+        <div class="card">
+          <h4>California Kickstart</h4>
+          <p><b>Problem.</b> Wanted a place for pickup soccer players in California to find local games instead of scattered group chats.</p>
+          <p><b>My solution.</b> Accounts and profiles, a board to post and join pickup games, a discussion forum with voting and comments, and a highlight-clip queue an admin reviews before it goes live.</p>
+          <p><b>How I built it.</b> Express 5 and SQLite with session-based auth and a full REST API for games, forum posts, votes, and moderation. Went back after the first build to close a stored XSS hole and an unauthenticated moderation endpoint. Built with Claude Code.</p>
+          <div class="meta">Node.js, Express 5, SQLite, session auth</div>
+          <div class="links"><a href="https://github.com/arniemathur/soccer-autonomous-website" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+        <div class="card">
+          <h4>LSAT study helper</h4>
+          <p><b>Problem.</b> LSAT prep is scattered across tabs and spreadsheets: exam countdown, resources, notes, and practice questions all live in different places.</p>
+          <p><b>My solution.</b> One page that tracks the exam date, surfaces a daily study focus, lists vetted prep resources, logs study notes, and serves random LSAT-style practice questions with explanations.</p>
+          <p><b>How I built it.</b> Express and <code>node:sqlite</code> behind a small REST API, a vanilla JS frontend, and a Node-native test suite.</p>
+          <div class="meta">Node.js, Express, SQLite, vanilla JS</div>
+          <div class="links"><a href="https://github.com/arniemathur/lsat-study-helper" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+        <div class="card">
+          <h4>Mortgage regulation portal</h4>
+          <p><b>Problem.</b> Finding the actual rule that governs a mortgage compliance, lending, or borrowing situation means digging across scattered federal-agency sites.</p>
+          <p><b>My solution.</b> A searchable portal of major U.S. mortgage regulations &mdash; RESPA, TILA, HMDA, the SAFE Act, BSA/AML, and more &mdash; organized by compliance, lending, and borrowing, each with a plain-language summary and a link to the official source.</p>
+          <p><b>How I built it.</b> Express and <code>node:sqlite</code>, with the regulation text hand-curated into a seed file rather than scraped, and REST endpoints for category, search, and lookup.</p>
+          <div class="meta">Node.js, Express, SQLite, regulatory data</div>
+          <div class="links"><a href="https://github.com/arniemathur/mortgage-regulation-portal" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+        <div class="card">
+          <h4>Full-stack welcome site</h4>
+          <p><b>Problem.</b> Most small apps need the same starting point &mdash; secure account creation and sign-in &mdash; before anything else gets built.</p>
+          <p><b>My solution.</b> A working sign-up and sign-in flow with server-side validation and a simple authenticated welcome page.</p>
+          <p><b>How I built it.</b> Express with <code>express-session</code>, and real password security: scrypt hashing with a per-user random salt and timing-safe comparison, not a toy hash. Wrote wireframes before building, and covered the flow with a supertest suite.</p>
+          <div class="meta">Node.js, Express, SQLite, auth</div>
+          <div class="links"><a href="https://github.com/arniemathur/full-stack-welcome-site" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="subgroup">
+      <div class="subgroup-head"><h3>Multiplayer games</h3><p>A real-time card game platform, built from scratch.</p></div>
+      <div class="card-grid">
+
+        <div class="card">
+          <h4>The Hustle</h4>
+          <p><b>Problem.</b> Wanted a real multiplayer card-game platform, not single-player toy versions &mdash; starting with an original Monopoly Deal-inspired game.</p>
+          <p><b>My solution.</b> Six live multiplayer card games &mdash; the original Hustle game, Uno, Skip-Bo, Phase 10, Presidents, and Speed &mdash; behind a shared lobby, each with rematch, randomized turn order, and its own rules engine.</p>
+          <p><b>How I built it.</b> An npm workspaces monorepo: Express and Socket.IO on the server, Next.js, React, and Tailwind on the frontend, each game's rules isolated in its own TypeScript package. Deployed on Railway and Vercel. Built with Claude Code as a coding agent &mdash; the repo carries its own agent notes for working around a Next.js version with training-data-breaking API changes.</p>
+          <div class="meta">TypeScript, Next.js, Socket.IO, Express</div>
+          <div class="links"><a href="https://github.com/arniemathur/the-hustle" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="subgroup">
+      <div class="subgroup-head"><h3>Financial data tools</h3><p>Python scripts and dashboards built on top of real market data.</p></div>
+      <div class="card-grid">
+
+        <div class="card">
+          <h4>Bond fund analytics</h4>
+          <p><b>Problem.</b> Comparing bond ETFs means bouncing between different platforms to check returns, risk, duration, and yield side by side.</p>
+          <p><b>My solution.</b> A dashboard covering eight major bond ETFs &mdash; performance, Sharpe ratios, drawdowns, correlation, and a rate-shock scenario model.</p>
+          <p><b>How I built it.</b> Python and Streamlit, pulling data through yfinance, with fund metadata config-driven rather than hardcoded and Excel reports generated via openpyxl.</p>
+          <div class="meta">Python, Streamlit, Plotly, pandas</div>
+          <div class="links"><a href="https://github.com/arniemathur/bond-fund-analytics" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+        <div class="card">
+          <h4>Financial statements puller</h4>
+          <p><b>Problem.</b> Building a DCF or comp set needs clean, structured financials &mdash; normally either a paid data subscription or manually reformatting filings by hand.</p>
+          <p><b>My solution.</b> A script that takes a ticker and writes out a fully formatted, analyst-styled Excel workbook of historical income statement, balance sheet, and cash flow data.</p>
+          <p><b>How I built it.</b> Python and pandas structure and pivot the pulled data by fiscal year, rule-based logic sorts line items into standard statement sections, and openpyxl applies real formatting: frozen headers, parenthesized negatives, alternating row shading.</p>
+          <div class="meta">Python, pandas, openpyxl</div>
+          <div class="links"><a href="https://github.com/arniemathur/FinancialStatements" target="_blank" rel="noopener">View source <span class="ext">GitHub</span></a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="subgroup">
+      <div class="subgroup-head"><h3>Compliance &amp; internal platforms</h3><p>Built for real teams and active use; source is private.</p></div>
+      <div class="card-grid">
+
+        <div class="card">
+          <h4>LRA project dashboard</h4>
+          <p><b>Problem.</b> An internal team needed a real project-management tool instead of juggling spreadsheets and Slack.</p>
+          <p><b>My solution.</b> A full internal dashboard: kanban board, project explorer, task checklists, time tracking, an activity feed, messaging, and an admin panel.</p>
+          <p><b>How I built it.</b> Next.js and React with Supabase for auth and data, a server-only data-access layer that centralizes permission checks instead of scattering them across pages, and shadcn/ui with Tailwind for the interface. Built with Claude Code.</p>
+          <div class="meta">Next.js, React, Supabase, TypeScript</div>
+        </div>
+
+        <div class="card">
+          <h4>CopyCheck</h4>
+          <p><b>Problem.</b> Mortgage marketing content has to comply with a sprawling, state-by-state web of federal and state advertising rules, and manual review doesn't scale across channels and jurisdictions.</p>
+          <p><b>My solution.</b> A compliance review platform for mortgage ads: upload a PDF, document, URL, or screenshot and get a structured verdict checked against a regulation library spanning all 51 U.S. jurisdictions, with citations back to source text and channel-specific rules for platforms like Meta, TikTok, and email.</p>
+          <p><b>How I built it.</b> A Next.js frontend on a FastAPI backend, regulations stored in a vector database for retrieval, and a two-model pipeline &mdash; one model for document extraction, a second for structured compliance analysis &mdash; with automatic revision tracking and diffs between submissions.</p>
+          <div class="meta">Next.js, FastAPI, vector search, RAG</div>
+        </div>
+
+        <div class="card">
+          <h4>Regulator AI <span style="font-weight: 400; color: var(--ink-muted);">&mdash; in the pipeline</span></h4>
+          <p><b>Problem.</b> Automotive service businesses need regulator-grounded answers about the rules that apply to them, not AI guesses, plus alerts when those rules change.</p>
+          <p><b>Planned solution.</b> A regulatory intelligence platform giving grounded, source-cited answers to automotive compliance questions, with change alerts when the underlying regulations move.</p>
+          <p><b>Status.</b> In design: the spec and implementation plan are written, and the build hasn't started yet.</p>
+          <div class="meta">Planning stage</div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
   <section id="reports">
